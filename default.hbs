@@ -13,6 +13,7 @@
 
     {{!-- Styles'n'Scripts --}}
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
     {{!-- This tag outputs SEO meta+structured data and other important settings --}}
     {{ghost_head}}
@@ -116,6 +117,24 @@
                 $('.subscribe-overlay form').removeClass();
                 $('.subscribe-email').val('');
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            function updateNavLogo() {
+                var bigLogo = document.querySelector('.site-title')
+                var isBigLogoVisible = bigLogo && window.pageYOffset < (bigLogo.offsetHeight + bigLogo.offsetTop)
+
+                var logos = document.querySelectorAll('.site-nav-logo')
+
+                for (var i = 0; i < logos.length; ++i) {
+                    logos[i].style.display = isBigLogoVisible ? 'none' : 'inline-block';
+                }
+            }
+
+            updateNavLogo()
+
+            window.addEventListener('scroll', updateNavLogo, { passive: true });
         });
     </script>
 

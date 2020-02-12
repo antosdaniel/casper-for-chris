@@ -22,7 +22,7 @@ production stylesheet in assets/built/screen.css
 9.  Error Template
 10. Subscribe Overlay
 11. Site Footer
-12. Dark Mode
+12. Custom home page
 
 */
 
@@ -32,7 +32,7 @@ production stylesheet in assets/built/screen.css
 @import "global.css";
 
 body {
-    background: #fafafa;
+    background: var(--background-color);
 }
 
 .img {
@@ -113,8 +113,8 @@ body {
     position: relative;
     margin-top: 64px;
     padding-bottom: 12px;
-    color: #fff;
-    background: color(var(--darkgrey) l(-5%)) no-repeat center center;
+    color: var(--content-color);
+    background: var(--background-color) no-repeat center center;
     background-size: cover;
 }
 
@@ -175,12 +175,13 @@ body {
 
 .site-description {
     z-index: 10;
-    margin: 0;
+    margin: 1em 0 0 0;
     padding: 5px 0;
     font-size: 2.1rem;
     line-height: 1.4em;
     font-weight: 400;
-    opacity: 0.8;
+    opacity: 0.9;
+    text-align: center;
 }
 
 /* 4.1 Home header
@@ -205,7 +206,6 @@ body {
 
 .site-home-header .site-description {
     font-size: 2.2rem;
-    font-weight: 300;
 }
 
 
@@ -223,8 +223,8 @@ body {
 .site-archive-header .no-image {
     padding-top: 0;
     padding-bottom: 0;
-    color: var(--darkgrey);
-    background: #fff;
+    color: var(--content-color);
+    background: var(--background-color);
     opacity: 1.0;
 }
 
@@ -272,7 +272,7 @@ body {
     right: 0;
     left: 0;
     z-index: 1000;
-    background: color(var(--darkgrey) l(-5%));
+    background: var(--background-color);
 }
 
 .site-nav {
@@ -292,20 +292,22 @@ body {
     display: flex;
 }
 
-.site-header-background:not(.responsive-header-img) .site-nav-left-wrapper:after,
-.site-nav-main .site-nav-left-wrapper:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    z-index: 1000;
-    width: 40px;
-    height: 100%;
-}
+@media (max-width: 650px) {
+    .site-header-background:not(.responsive-header-img) .site-nav-left-wrapper:after,
+    .site-nav-main .site-nav-left-wrapper:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        z-index: 1000;
+        width: 40px;
+        height: 100%;
+    }
 
-.site-header-background:not(.responsive-header-img) .site-nav-left-wrapper:after,
-.site-nav-main .site-nav-left-wrapper:after {
-    right: 0;
-    background: linear-gradient(to right, color(var(--darkgrey) l(-5%) a(0)) 0%,color(var(--darkgrey) l(-5%)) 100%);
+    .site-header-background:not(.responsive-header-img) .site-nav-left-wrapper:after,
+    .site-nav-main .site-nav-left-wrapper:after {
+        right: 0;
+        background: linear-gradient(to right, color(var(--content-color) l(-5%) a(0)) 0%, color(var(--content-color) l(-5%)) 100%);
+    }
 }
 
 .site-nav-left {
@@ -341,7 +343,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     position: relative;
     z-index: 100;
     flex-shrink: 0;
-    display: inline-block;
+    display: none;
     margin-right: 32px;
     color: #fff;
     font-size: 1.7rem;
@@ -390,7 +392,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     position: relative;
     display: block;
     padding: 12px 12px;
-    color: #fff;
+    color: var(--content-color);
     opacity: 0.8;
     transition: opacity 0.35s ease-in-out;
 }
@@ -407,7 +409,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     bottom: 8px;
     left: 12px;
     height: 1px;
-    background: #fff;
+    background: var(--content-color);
     opacity: 0.25;
     transition: all 0.35s ease-in-out;
 }
@@ -496,7 +498,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 .social-link svg {
     height: 1.8rem;
-    fill: #fff;
+    fill: var(--content-color);
 }
 
 .social-link-fb svg {
@@ -520,7 +522,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     padding: 4px 10px;
     margin: 0 0 0 10px;
     border: #fff 1px solid;
-    color: #fff;
+    color: var(--content-color);
     line-height: 1em;
     border-radius: 10px;
     opacity: 0.8;
@@ -547,7 +549,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 .rss-button svg {
     margin-bottom: 1px;
     height: 2.1rem;
-    fill: #fff;
+    fill: var(--content-color);
 }
 
 /* Special behaviors for home navigation */
@@ -600,7 +602,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     flex-wrap: wrap;
     margin: 0 -20px;
     padding: 50px 0 0;
-    background: #fff;
+    background: var(--background-color);
 }
 
 .post-card {
@@ -634,7 +636,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 .post-card-content-link {
     position: relative;
     display: block;
-    color: var(--darkgrey);
+    color: var(--content-color);
 }
 
 .post-card-content-link:hover {
@@ -745,7 +747,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     font-size: 1.2rem;
     letter-spacing: 0.2px;
     white-space: nowrap;
-    background: var(--darkgrey);
+    background: var(--content-color);
     border-radius: 3px;
     box-shadow: rgba(39,44,49,0.08) 0 12px 26px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
     opacity: 0;
@@ -770,7 +772,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     display: flex;
     flex-direction: column;
     margin: 2px 0 0 6px;
-    color: color(var(--midgrey) l(+10%));
+    color: color(var(--content-color) l(+10%));
     font-size: 1.2rem;
     line-height: 1.4em;
     font-weight: 400;
@@ -783,7 +785,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .post-card-byline-content a {
-    color: color(var(--darkgrey) l(+20%));
+    color: color(var(--content-color) l(+20%));
     font-weight: 600;
 }
 
@@ -919,7 +921,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 .page-template .site-main {
     margin-top: 64px;
     padding-bottom: 4vw;
-    background: #fff;
+    background: var(--background-color);
 }
 
 .post-full-header {
@@ -968,7 +970,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 
 .post-full-title {
     margin: 0 0 0.2em;
-    color: color(var(--darkgrey) l(-5%));
+    color: color(var(--content-color) l(-5%));
 }
 
 .post-full-custom-excerpt {
@@ -1010,7 +1012,7 @@ make sure this only happens on large viewports / desktop-ish devices.
     font-family: Georgia, serif;
     font-size: 2.0rem;
     line-height: 1.6em;
-    background: #fff;
+    background: var(--background-color);
 }
 
 @media (max-width: 1170px) {
@@ -1078,9 +1080,9 @@ make sure this only happens on large viewports / desktop-ish devices.
 }
 
 .post-full-content a {
-    color: var(--darkgrey);
+    color: var(--content-color);
     word-break: break-word;
-    box-shadow: var(--darkgrey) 0 -1px 0 inset;
+    box-shadow: var(--content-color) 0 -1px 0 inset;
     transition: all 0.2s ease-in-out;
 }
 
@@ -1092,7 +1094,7 @@ make sure this only happens on large viewports / desktop-ish devices.
 
 .post-full-content strong,
 .post-full-content em {
-    color: color(var(--darkgrey) l(-5%));
+    color: color(var(--content-color) l(-5%));
 }
 
 .post-full-content small {
@@ -1195,11 +1197,11 @@ Usage (In Ghost editor):
     margin: 1.5em 0 3em;
     padding: 20px;
     max-width: 100%;
-    border: color(var(--darkgrey) l(-10%)) 1px solid;
+    border: color(var(--content-color) l(-10%)) 1px solid;
     color: var(--whitegrey);
     font-size: 1.4rem;
     line-height: 1.5em;
-    background: color(var(--darkgrey) l(-3%));
+    background: color(var(--content-color) l(-3%));
     border-radius: 5px;
 }
 
@@ -1250,7 +1252,7 @@ Usage (In Ghost editor):
 .post-full-content h4,
 .post-full-content h5,
 .post-full-content h6 {
-    color: color(var(--darkgrey) l(-5%));
+    color: color(var(--content-color) l(-5%));
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
@@ -1463,7 +1465,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content table th {
-    color: var(--darkgrey);
+    color: var(--content-color);
     font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 0.2px;
@@ -1503,7 +1505,7 @@ Usage (In Ghost editor):
 
 .post-full-byline-meta {
     margin: 2px 0 0;
-    color: color(var(--midgrey) l(+10%));
+    color: color(var(--content-color) l(+10%));
     font-size: 1.2rem;
     line-height: 1.2em;
     letter-spacing: 0.2px;
@@ -1518,11 +1520,11 @@ Usage (In Ghost editor):
 }
 
 .post-full-byline-meta h4 a {
-    color: color(var(--darkgrey) l(+10%));
+    color: color(var(--content-color) l(+10%));
 }
 
 .post-full-byline-meta h4 a:hover {
-    color: var(--darkgrey);
+    color: var(--content-color);
 }
 
 .post-full-byline-meta .bull {
@@ -1681,7 +1683,7 @@ Usage (In Ghost editor):
 .subscribe-form-title {
     margin: 0 0 3px 0;
     padding: 0;
-    color: var(--darkgrey);
+    color: var(--content-color);
     font-size: 3.5rem;
     line-height: 1;
     font-weight: 600;
@@ -1844,7 +1846,7 @@ Usage (In Ghost editor):
 
 .read-next {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: color(var(--darkgrey) l(-5%));
+    background: color(var(--content-color) l(-5%));
 }
 
 .read-next-feed {
@@ -1902,7 +1904,7 @@ Usage (In Ghost editor):
     overflow: hidden;
     margin: 0 25px 50px;
     padding: 25px;
-    background: linear-gradient(color(var(--darkgrey) l(+2%)), color(var(--darkgrey) l(-5%)));
+    background: linear-gradient(color(var(--content-color) l(+2%)), color(var(--content-color) l(-5%)));
     border-radius: 3px;
 }
 
@@ -2174,7 +2176,7 @@ Usage (In Ghost editor):
 .post-full-content .kg-bookmark-container {
     display: flex;
     min-height: 148px;
-    color: var(--darkgrey);
+    color: var(--content-color);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     text-decoration: none;
     border-radius: 3px;
@@ -2182,7 +2184,7 @@ Usage (In Ghost editor):
 }
 
 .post-full-content .kg-bookmark-container:hover {
-    color: var(--darkgrey);
+    color: var(--content-color);
     text-decoration: none;
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.15), 0 0 1px rgba(0, 0, 0, 0.09);
 }
@@ -2400,7 +2402,7 @@ Usage (In Ghost editor):
 }
 
 .no-image .author-social-link a {
-    color: var(--darkgrey);
+    color: var(--content-color);
 }
 
 .author-social-link a:hover {
@@ -2590,7 +2592,7 @@ Usage (In Ghost editor):
     display: block;
     width: 20px;
     height: 1px;
-    background: #fff;
+    background: var(--background-color);
     opacity: 0.8;
     transform: rotate(45deg);
 }
@@ -2603,7 +2605,7 @@ Usage (In Ghost editor):
     display: block;
     width: 20px;
     height: 1px;
-    background: #fff;
+    background: var(--background-color);
     opacity: 0.8;
     transform: rotate(-45deg);
 }
@@ -2753,7 +2755,7 @@ Usage (In Ghost editor):
     padding-top: 20px;
     padding-bottom: 60px;
     color: #fff;
-    background: color(var(--darkgrey) l(-5%));
+    background: var(--background-color);
 }
 
 .site-footer-content {
@@ -2761,17 +2763,17 @@ Usage (In Ghost editor):
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    color: rgba(255,255,255,0.7);
+    color: var(--content-color);
     font-size: 1.3rem;
 }
 
 .site-footer-content a {
-    color: rgba(255,255,255,0.7);
+    color: var(--content-color);
 }
 
 .site-footer-content a:hover {
-    color: rgba(255,255,255,1);
-    text-decoration: none;
+    color: var(--content-color);
+    text-decoration: underline;
 }
 
 .site-footer-nav {
@@ -2791,7 +2793,7 @@ Usage (In Ghost editor):
     display: block;
     width: 2px;
     height: 2px;
-    background: #fff;
+    background: color(var(--content-color) blackness(+15%));
     border-radius: 100%;
 }
 
@@ -2806,5 +2808,54 @@ Usage (In Ghost editor):
 
     .site-footer-nav a:first-child {
         margin-left: 0;
+    }
+}
+
+
+/* 12. Custom home page
+/* ---------------------------------------------------------- */
+
+.home__section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home__section:first-of-type {
+    margin-top: 2.5em;
+}
+
+.home__section:last-of-type {
+    margin-bottom: 2.5em;
+}
+
+.home__image {
+    max-width: 50%;
+    margin: 15px 0;
+    align-self: center;
+}
+
+.home__text {
+    max-width: 50%;
+    padding: 45px 15px 15px 15px;
+    text-align: justify;
+}
+
+@media (max-width: 650px) {
+    .home__section {
+        flex-direction: column;
+    }
+
+    .home__section:first-of-type {
+        margin-top: 0;
+    }
+
+    .home__image,
+    .home__text {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .home__text {
+        padding: 10px 0;
     }
 }
